@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@types/node": "^20.12.12",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "start": "nodemon -e ts --exec ts-node ./example"
+  }
+}
