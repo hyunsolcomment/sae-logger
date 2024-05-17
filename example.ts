@@ -1,7 +1,7 @@
 import { Logger, LoggerFile } from "./logger";
 
 // 예시 요청 인자들
-const requests = { user_id: 'ParkSaehyeon', nickname: '박세현', auto_login: { note_id: 'hello world', user_id: '안녕' } };
+const requests = { user_id: 'ParkSaehyeon', nickname: '박세현', note: { note_id: 'hello world', user_id: '안녕' } };
 
 // 최초 한 번만 호출
 LoggerFile.startWrite();
