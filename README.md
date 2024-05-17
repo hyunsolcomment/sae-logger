@@ -1,4 +1,5 @@
 # sae-logger
+<img src="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square" />
  타입 스크립트 로그 유틸
 
 <br />
@@ -53,6 +54,30 @@
  </tr>
 </table>
 
+<h3>예시</h3>
+
+<h4>생성자 예시</h4>
+<pre>
+const logger = new Logger(`user.login`, { user_id: 'test1234' });
+</pre>
+
+<h4>INFO 로그 예시</h4>
+<pre>
+logger.log(`유저가 로그인했습니다.`);
+</pre>
+출력: [0000:00:00] [INFO] [user.login] 유저가 로그인했습니다. ({ user_id: test1234 }) 
+
+<h4>WARN 로그 예시</h4>
+<pre>
+logger.warn(`인자가 충분하지 않습니다.`);
+</pre>
+출력: <span style="color: yellow;">[0000:00:00] [WARN] [user.login] 인자가 충분하지 않습니다. ({ user_id: test1234 })</span>
+
+<h4>WARN 로그 예시</h4>
+<pre>
+logger.error(`DB에서 정보를 불러올 수 없습니다.`);
+</pre>
+출력: <span style="color: red;">[0000:00:00] [ERROR] [user.login] DB에서 정보를 불러올 수 없습니다. ({ user_id: test1234 }) </span>
 <br />
 
 # LoggerFile 클래스
