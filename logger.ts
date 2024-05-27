@@ -175,16 +175,31 @@ export class Logger {
         return `[${this.prefix}] ${message}${this.params ? ` (${Logger.obj2str(this.params)})` : ''}`
     }
 
-    info(message: string) {
-        Logger.info(this.str2log(message));
+    private static msg2str(...message: any) {
+        const arr: string[] = [];
+
+        for(let m of message[0]) {
+            
+            if(typeof m === 'object') {
+                arr.push(Logger.obj2str(m));
+            } else {
+                arr.push(m+"");
+            }
+        }
+
+        return arr.join(" ");
     }
 
-    warn(message: string) {
-        Logger.warn(this.str2log(message));
+    info(...message: any) {
+        Logger.info(this.str2log(Logger.msg2str(message)));
     }
 
-    error(message: string) {
-        Logger.error(this.str2log(message));
+    warn(...message: any) {
+        Logger.warn(this.str2log(Logger.msg2str(message)));
+    }
+
+    error(...message: any) {
+        Logger.error(this.str2log(Logger.msg2str(message)));
     }
 
     static obj2str(obj: object): string {
@@ -235,20 +250,20 @@ export class Logger {
         process.stdout.write("\n"+str);
     }
 
-    static info(message: string) {
-        const str = `[${Logger.now2str()}] [INFO] ${message}`;
+    static info(...message: any[]) {
+        const str = `[${Logger.now2str()}] [INFO] ${Logger.msg2str(message)}`;
         console.log(`${ForeColor.Reset}${str}${ForeColor.Reset}`)
         LoggerFile.append(str);
     }
 
-    static warn(message: string) {
-        const str = `[${Logger.now2str()}] [WARN] ${message}`;
+    static warn(...message: any[]) {
+        const str = `[${Logger.now2str()}] [WARN] ${Logger.msg2str(message)}`;
         console.log(`${ForeColor.Yellow}${str}${ForeColor.Reset}`)
         LoggerFile.append(str);
     }
 
-    static error(message: string) {
-        const str = `[${Logger.now2str()}] [ERROR] ${message}`;
+    static error(...message: any[]) {
+        const str = `[${Logger.now2str()}] [ERROR] ${Logger.msg2str(message)}`;
         console.log(`${ForeColor.Red}${str}${ForeColor.Reset}`)
         LoggerFile.append(str);
     }
